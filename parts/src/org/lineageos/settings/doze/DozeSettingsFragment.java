@@ -138,17 +138,23 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+
         if (DozeUtils.ALWAYS_ON_DISPLAY.equals(preference.getKey())) {
             DozeUtils.enableAlwaysOn(getActivity(), (Boolean) newValue);
         }
 
         mHandler.post(() -> DozeUtils.checkDozeService(getActivity()));
 
+
+        Utils.enableGesture(getActivity(), preference.getKey(), (Boolean) newValue);
+        Utils.checkDozeService(getActivity());
+
         return true;
     }
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+
         DozeUtils.enableDoze(getActivity(), isChecked);
         DozeUtils.checkDozeService(getActivity());
 
@@ -160,6 +166,12 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
             mAlwaysOnDisplayPreference.setChecked(false);
         }
         mAlwaysOnDisplayPreference.setEnabled(isChecked);
+
+        Utils.enableDoze(getActivity(), isChecked);
+        Utils.checkDozeService(getActivity());
+
+        mTextView.setText(getString(isChecked ? R.string.switch_bar_on : R.string.switch_bar_off));
+
 
         mPickUpPreference.setEnabled(isChecked);
         mHandwavePreference.setEnabled(isChecked);

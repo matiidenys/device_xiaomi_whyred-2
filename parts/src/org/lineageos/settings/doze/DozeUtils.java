@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2015 The CyanogenMod Project
  *               2017-2019 The LineageOS Project
+ *            
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -82,11 +83,18 @@ public final class DozeUtils {
                 DOZE_ENABLED, 1) != 0;
     }
 
+
+    protected static boolean enableDoze(Context context, boolean enable) {
+        return Settings.Secure.putInt(context.getContentResolver(),
+                DOZE_ENABLED, enable ? 1 : 0);
+    }
+
     protected static void launchDozePulse(Context context) {
         if (DEBUG) Log.d(TAG, "Launch doze pulse");
         context.sendBroadcastAsUser(new Intent(DOZE_INTENT),
                 new UserHandle(UserHandle.USER_CURRENT));
     }
+
 
      protected static boolean enableAlwaysOn(Context context, boolean enable) {
         return Settings.Secure.putIntForUser(context.getContentResolver(),
@@ -110,6 +118,16 @@ public final class DozeUtils {
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(gesture, false);
     }
+    protected static void enableGesture(Context context, String gesture, boolean enable) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putBoolean(gesture, enable).apply();
+    }
+
+    protected static boolean isGestureEnabled(Context context, String gesture) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(gesture, false);
+    }
+
 
     protected static boolean isPickUpEnabled(Context context) {
         return isGestureEnabled(context, GESTURE_PICK_UP_KEY);
@@ -123,7 +141,11 @@ public final class DozeUtils {
         return isGestureEnabled(context, GESTURE_POCKET_KEY);
     }
 
+
     public static boolean sensorsEnabled(Context context) {
+
+    protected static boolean sensorsEnabled(Context context) {
+
         return isPickUpEnabled(context) || isHandwaveGestureEnabled(context)
                 || isPocketGestureEnabled(context);
     }
