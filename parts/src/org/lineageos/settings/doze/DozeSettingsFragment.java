@@ -161,6 +161,7 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
         mTextView.setText(getString(isChecked ? R.string.switch_bar_on : R.string.switch_bar_off));
         mSwitchBar.setActivated(isChecked);
 
+
         if (!isChecked) {
             DozeUtils.enableAlwaysOn(getActivity(), false);
             mAlwaysOnDisplayPreference.setChecked(false);
@@ -171,6 +172,7 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
         Utils.checkDozeService(getActivity());
 
         mTextView.setText(getString(isChecked ? R.string.switch_bar_on : R.string.switch_bar_off));
+
 
 
         mPickUpPreference.setEnabled(isChecked);
