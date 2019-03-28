@@ -65,38 +65,22 @@ public class DozeService extends Service {
 
     private void onDisplayOn() {
         if (DEBUG) Log.d(TAG, "Display on");
-
         if (DozeUtils.isPickUpEnabled(this)) {
             mTiltSensor.disable();
         }
         if (DozeUtils.isHandwaveGestureEnabled(this) ||
                 DozeUtils.isPocketGestureEnabled(this)) {
-
-        if (Utils.isPickUpEnabled(this)) {
-            mTiltSensor.disable();
-        }
-        if (Utils.isHandwaveGestureEnabled(this) ||
-                Utils.isPocketGestureEnabled(this)) {
-
             mProximitySensor.disable();
         }
     }
 
     private void onDisplayOff() {
         if (DEBUG) Log.d(TAG, "Display off");
-
         if (DozeUtils.isPickUpEnabled(this)) {
             mTiltSensor.enable();
         }
         if (DozeUtils.isHandwaveGestureEnabled(this) ||
                 DozeUtils.isPocketGestureEnabled(this)) {
-
-        if (Utils.isPickUpEnabled(this)) {
-            mTiltSensor.enable();
-        }
-        if (Utils.isHandwaveGestureEnabled(this) ||
-                Utils.isPocketGestureEnabled(this)) {
-
             mProximitySensor.enable();
         }
     }
@@ -105,8 +89,8 @@ public class DozeService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
-                onDisplayOn();
-            } else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+                onDisplayOn();          
+ } else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
                 onDisplayOff();
             }
         }

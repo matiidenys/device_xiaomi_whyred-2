@@ -69,6 +69,5 @@
 
     <!-- Doze: does this device support STATE_DOZE?  -->
     <bool name="doze_display_state_supported">true</bool>
->>>>>>> 6821a25... msm8953-common: Declare STATE_DOZE support
 </resources>
 

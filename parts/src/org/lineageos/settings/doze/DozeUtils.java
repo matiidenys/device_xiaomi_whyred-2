@@ -123,12 +123,6 @@ public final class DozeUtils {
                 .putBoolean(gesture, enable).apply();
     }
 
-    protected static boolean isGestureEnabled(Context context, String gesture) {
-        return PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(gesture, false);
-    }
-
-
     protected static boolean isPickUpEnabled(Context context) {
         return isGestureEnabled(context, GESTURE_PICK_UP_KEY);
     }
@@ -141,12 +135,8 @@ public final class DozeUtils {
         return isGestureEnabled(context, GESTURE_POCKET_KEY);
     }
 
-
-    public static boolean sensorsEnabled(Context context) {
-
-    protected static boolean sensorsEnabled(Context context) {
-
-        return isPickUpEnabled(context) || isHandwaveGestureEnabled(context)
+  public static boolean sensorsEnabled(Context context) {
+  return isPickUpEnabled(context) || isHandwaveGestureEnabled(context)
                 || isPocketGestureEnabled(context);
     }
 }

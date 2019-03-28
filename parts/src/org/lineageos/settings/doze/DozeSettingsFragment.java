@@ -145,10 +145,6 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
 
         mHandler.post(() -> DozeUtils.checkDozeService(getActivity()));
 
-
-        Utils.enableGesture(getActivity(), preference.getKey(), (Boolean) newValue);
-        Utils.checkDozeService(getActivity());
-
         return true;
     }
 
@@ -167,15 +163,8 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
             mAlwaysOnDisplayPreference.setChecked(false);
         }
         mAlwaysOnDisplayPreference.setEnabled(isChecked);
-
-        Utils.enableDoze(getActivity(), isChecked);
-        Utils.checkDozeService(getActivity());
-
-        mTextView.setText(getString(isChecked ? R.string.switch_bar_on : R.string.switch_bar_off));
-
-
-
-        mPickUpPreference.setEnabled(isChecked);
+ 
+      mPickUpPreference.setEnabled(isChecked);
         mHandwavePreference.setEnabled(isChecked);
         mPocketPreference.setEnabled(isChecked);
     }
