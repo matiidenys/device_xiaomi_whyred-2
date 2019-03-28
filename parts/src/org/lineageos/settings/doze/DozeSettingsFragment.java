@@ -146,15 +146,10 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
         mHandler.post(() -> DozeUtils.checkDozeService(getActivity()));
 
 
-
         Utils.enableGesture(getActivity(), preference.getKey(), (Boolean) newValue);
         Utils.checkDozeService(getActivity());
 
-
-
-
-        return true
-;
+        return true;
     }
 
     @Override
